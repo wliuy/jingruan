@@ -47,34 +47,13 @@
           </div>
         </div>
 
-        <div class="admin-tabs">
-          <button
-            class="tab-btn"
-            :class="{ active: activeTab === 'categories' }"
-            @click="activeTab = 'categories'"
-          >
-            🖥️ 前台管理
-          </button>
-          <button
-            class="tab-btn"
-            :class="{ active: activeTab === 'settings' }"
-            @click="activeTab = 'settings'"
-          >
-            ⚙️ 系统设置
-          </button>
-        </div>
-
-        <div v-if="activeTab === 'categories'" class="tab-content">
+        <div class="tab-content">
           <CategoryManager
             :categories="categories"
             @update="handleCategoriesUpdate"
             @save="saveToKV"
             :loading="saving"
           />
-        </div>
-
-        <div v-if="activeTab === 'settings'" class="tab-content">
-          <SystemSettings />
         </div>
       </main>
     </div>
@@ -95,7 +74,6 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import CategoryManager from '../components/admin/CategoryManager.vue'
-import SystemSettings from '../components/admin/SystemSettings.vue'
 import CustomDialog from '../components/admin/CustomDialog.vue'
 import { useSiteDataAPI } from '../apis/useSiteDataAPI.js'
 
@@ -110,7 +88,6 @@ const loading = ref(false)
 const saving = ref(false)
 
 // 管理界面状态
-const activeTab = ref('categories')
 const categories = ref([])
 const navTitle = ref('精软导航')
 
@@ -268,7 +245,7 @@ const skipLoading = async () => {
     'info',
     '⏭️ 已跳过加载',
     '已跳过KV数据加载，当前使用本地数据',
-    [`• 分类数量: ${categories.value.length}`, `• 可在系统设置中重新尝试连接KV`]
+    [`• 分类数量: ${categories.value.length}`, `• 前台刷新即可看到最新数据`]
   )
 }
 

@@ -11,13 +11,6 @@
       </div>
     </div>
 
-    <!-- 统计信息 -->
-    <div class="stats-bar">
-       <div class="stat-info">
-        💡 提示：v2.5.10 已支持站点在分类间拖拽迁移，点击站点图标可直接编辑。
-      </div>
-    </div>
-
     <!-- 分类列表主体 -->
     <div class="category-list">
       <draggable 

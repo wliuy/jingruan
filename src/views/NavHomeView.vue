@@ -70,7 +70,7 @@
 <!-- 左侧边栏底部信息 -->
       <div class="sidebar-footer">
         <a
-          href="https://github.com/wliuy/jingruan"
+          href="https://me.89729981.xyz"
           target="_blank"
           rel="noopener noreferrer"
           class="github-link"
@@ -80,7 +80,7 @@
             <path d="M512 512m-331.294118 0a331.294118 331.294118 0 1 0 662.588236 0 331.294118 331.294118 0 1 0-662.588236 0Z" fill="#4474FF" p-id="6481"></path>
             <path d="M512 993.882353a481.882353 481.882353 0 1 0 0-963.764706 481.882353 481.882353 0 0 0 0 963.764706z m0-60.235294a421.647059 421.647059 0 1 1 0-843.294118 421.647059 421.647059 0 0 1 0 843.294118z" fill="#4474FF" p-id="6482"></path>
           </svg>
-          <span>GitHub</span>
+          <span>个人展示页</span>
         </a>
       </div>
     </aside>
