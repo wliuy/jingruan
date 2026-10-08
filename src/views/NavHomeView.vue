@@ -35,7 +35,7 @@
         <!-- 🌟 侧边栏 Logo 替换为自定义图片 -->
         <img :src="siteLogo" class="logo" alt="Logo">
         <!-- 🌟 SEO 优化：网站标题作为 H1 -->
-        <h1 class="site-title">{{ title || 'jingruan 导航' }}</h1>
+        <h1 class="site-title">{{ title || '精软导航' }}</h1>
       </div>
 
       <!-- 分类导航 -->
@@ -339,7 +339,7 @@ const searchEngines = {
  * 会根据后台设置的标题和当前分类名自动更新网页元数据
  */
 const refreshSEO = () => {
-  const pageTitle = title.value || 'jingruan 导航';
+  const pageTitle = title.value || '精软导航';
   document.title = pageTitle;
   
   if (categories.value && categories.value.length > 0) {
@@ -423,9 +423,9 @@ const handleUnlock = async () => {
   unlocking.value = true
   unlockError.value = ''
   try {
-    const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD
-    if (!adminPassword) throw new Error('访问密钥未配置')
-    if (unlockPassword.value === adminPassword) {
+    const lockPassword = import.meta.env.VITE_OPEN_LOCK
+    if (!lockPassword) throw new Error('访问密钥未配置')
+    if (unlockPassword.value === lockPassword) {
       isUnlocked.value = true
       localStorage.setItem('nav_unlocked', 'true')
       unlockPassword.value = ''

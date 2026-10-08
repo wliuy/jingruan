@@ -112,7 +112,7 @@ const saving = ref(false)
 // 管理界面状态
 const activeTab = ref('categories')
 const categories = ref([])
-const navTitle = ref('jingruan 导航')
+const navTitle = ref('精软导航')
 
 // 紧急兜底：如果5秒后loading还是true，强制重置
 const fallbackTimer = setTimeout(() => {
@@ -139,32 +139,23 @@ const dialogTitle = ref('')
 const dialogMessage = ref('')
 const dialogDetails = ref([])
 
-// 验证管理员密钥
+// 验证管理员密钥（仅前端入口，真正的写权限校验由 Worker 的 ADMIN_PASSWORD 负责）
 const handleLogin = async () => {
   loading.value = true
   loginError.value = ''
 
   try {
-    const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD
-    if (!adminPassword) {
-      throw new Error('管理密钥未配置，请配置环境变量')
-    }
+    isAuthenticated.value = true
+    localStorage.setItem('admin_authenticated', 'true')
+    sessionStorage.setItem('admin_password', loginPassword.value)
 
-    if (loginPassword.value === adminPassword) {
-      isAuthenticated.value = true
-      localStorage.setItem('admin_authenticated', 'true')
-      sessionStorage.setItem('admin_password', loginPassword.value)
-
-      setTimeout(async () => {
-        try {
-          await loadCategories()
-        } catch (error) {
-          loading.value = false
-        }
-      }, 500)
-    } else {
-      throw new Error('密钥错误，请重新输入')
-    }
+    setTimeout(async () => {
+      try {
+        await loadCategories()
+      } catch (error) {
+        loading.value = false
+      }
+    }, 500)
   } catch (error) {
     loginError.value = error.message
   } finally {
@@ -218,16 +209,16 @@ const loadCategories = async () => {
     const data = await loadSiteData()
     if (data) {
       categories.value = data.categories || []
-      navTitle.value = data.title || 'jingruan 导航'
+      navTitle.value = data.title || '精软导航'
     } else {
       const { mockData } = await import('../mock/mock_data.js')
       categories.value = mockData.categories || []
-      navTitle.value = mockData.title || 'jingruan 导航'
+      navTitle.value = mockData.title || '精软导航'
     }
   } catch (error) {
     const { mockData } = await import('../mock/mock_data.js')
     categories.value = mockData.categories || []
-    navTitle.value = mockData.title || 'jingruan 导航'
+    navTitle.value = mockData.title || '精软导航'
   } finally {
     loading.value = false
   }
@@ -259,7 +250,7 @@ const skipLoading = async () => {
   try {
     const { mockData } = await import('../mock/mock_data.js')
     categories.value = mockData.categories || []
-    navTitle.value = mockData.title || 'jingruan 导航'
+    navTitle.value = mockData.title || '精软导航'
   } catch (error) {
     categories.value = [
       {
@@ -270,7 +261,7 @@ const skipLoading = async () => {
         sites: []
       }
     ]
-    navTitle.value = 'jingruan 导航'
+    navTitle.value = '精软导航'
   }
 
   showDialog(
@@ -342,10 +333,10 @@ onMounted(() => {
 
     import('../mock/mock_data.js').then(({ mockData }) => {
       categories.value = mockData.categories || []
-      navTitle.value = mockData.title || 'jingruan 导航'
+      navTitle.value = mockData.title || '精软导航'
     }).catch(() => {
       categories.value = []
-      navTitle.value = 'jingruan 导航'
+      navTitle.value = '精软导航'
     })
   }
 })

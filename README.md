@@ -1,4 +1,4 @@
-# 🚀 jingruan 导航
+# 🚀 精软导航
 
 > 一个极致简洁、响应式适配、支持云端同步的个人导航站。
 
@@ -28,10 +28,7 @@
 在项目根目录创建 `.env` 文件（注意：此文件包含敏感信息，默认已被 `.gitignore` 忽略，请勿推送到公开仓库）：
 
 ```env
-# 管理员登录后台的密钥（注意：必须与 Worker 的 ADMIN_PASSWORD 一致，后台保存数据时用它鉴权）
-VITE_ADMIN_PASSWORD=你的后台登录密码
-
-# 访问锁定（留空则不启用，若填入内容，则首页访问前需验证此密码）
+# 访问锁定（可选，留空则不启用；若填入内容，首页访问前需验证此密码）
 VITE_OPEN_LOCK=
 ```
 
@@ -64,7 +61,7 @@ npx wrangler deploy
 # 1. 创建 KV namespace（若 wrangler.jsonc 中的 id 尚未填写）
 npx wrangler kv namespace create SITE_DATA
 
-# 2. 设置写入密钥（必须与 VITE_ADMIN_PASSWORD 一致）
+# 2. 设置后台登录/写入密钥（唯一密码，登录 /admin 时输入它）
 npx wrangler secret put ADMIN_PASSWORD
 
 # 3. 用 src/mock/mock_data.js 当前内容初始化站点数据
@@ -110,7 +107,7 @@ jingruan/
 │   └── siteMetadata.js  # Worker 侧元数据抓取逻辑
 ├── public/              # 静态资源
 ├── push.js              # 运维工具 (本地代码推送到 GitHub)
-└── .env                 # 核心配置 (VITE_ADMIN_PASSWORD、VITE_OPEN_LOCK)
+└── .env                 # 可选配置 (VITE_OPEN_LOCK 等，后台密码在 Cloudflare 侧)
 ```
 
 ## 🎯 UI 规范说明

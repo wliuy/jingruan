@@ -1,4 +1,4 @@
-jingruan 导航 - robots.txt
+精软导航 - robots.txt
 
 允许所有搜索引擎抓取首页和资源
 

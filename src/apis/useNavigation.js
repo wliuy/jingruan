@@ -13,7 +13,7 @@ export function useNavigation() {
 
   const applyData = (data) => {
     categories.value = data.categories || []
-    title.value = data.title || 'jingruan 导航'
+    title.value = data.title || '精软导航'
     if (data.search && SEARCH_ENGINES.includes(data.search)) {
       defaultSearchEngine.value = data.search
     } else {

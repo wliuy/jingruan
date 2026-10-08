@@ -14,7 +14,7 @@ const router = createRouter({
       name: 'admin',
       component: () => import('../views/AdminView.vue'), // 后台页面懒加载
       meta: {
-        title: '管理后台 - jingruan 导航',
+        title: '管理后台 - 精软导航',
         requiresAuth: true
       }
     },
@@ -31,7 +31,7 @@ router.beforeEach((to, from, next) => {
   if (to.meta?.title) {
     document.title = to.meta.title
   } else {
-    document.title = 'jingruan 导航'
+    document.title = '精软导航'
   }
 
   next()

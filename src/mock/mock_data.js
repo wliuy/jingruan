@@ -1,5 +1,5 @@
 export const mockData = {
-  "title": "jingruan 导航",
+  "title": "精软导航",
   "search": "bing",
   "categories": []
 }

@@ -61,7 +61,7 @@
               {{ titleSaving ? '保存中...' : '💾 保存标题' }}
             </button>
           </div>
-          <p class="setting-description">当前标题: {{ currentTitle || 'jingruan 导航' }}</p>
+          <p class="setting-description">当前标题: {{ currentTitle || '精软导航' }}</p>
         </div>
 
         <div class="setting-group">
@@ -138,14 +138,7 @@
       <h3>🔐 权限配置</h3>
       <div class="env-config">
         <div class="config-item">
-          <label>管理员密钥 (VITE_ADMIN_PASSWORD):</label>
-          <div class="config-value">
-            <span v-if="envConfig.adminPassword" class="value-set">✅ 已配置</span>
-            <span v-else class="value-missing">❌ 未配置</span>
-          </div>
-        </div>
-        <div class="config-item">
-          <label>Worker 写入密钥 (ADMIN_PASSWORD):</label>
+          <label>后台写入密钥 (ADMIN_PASSWORD):</label>
           <div class="config-value">
             <span v-if="adminPasswordConfigured" class="value-set">✅ 已配置</span>
             <span v-else class="value-missing">❌ 未配置</span>
@@ -173,13 +166,13 @@
             <pre><code>npx wrangler secret put ADMIN_PASSWORD</code></pre>
           </div>
           <p>或在 Cloudflare 控制台 → Workers 与 Pages → 你的 Worker → 设置 → 变量 → 添加加密变量 <code>ADMIN_PASSWORD</code>。</p>
-          <p><strong>注意：</strong>该值必须与 <code>VITE_ADMIN_PASSWORD</code> 保持一致，后台保存数据时用它做鉴权。</p>
+          <p><strong>注意：</strong>后台只有一个登录密码（即此 <code>ADMIN_PASSWORD</code>）。登录 <code>/admin</code> 时输入的密码会作为写入鉴权传给 Worker，两者一致才能保存。</p>
         </div>
 
         <div class="guide-step">
-          <h4>3. 本地 .env 配置</h4>
+          <h4>3. 登录后台编辑</h4>
           <div class="code-block">
-            <pre><code>VITE_ADMIN_PASSWORD=你的后台登录密码</code></pre>
+            <pre><code>访问 /admin，输入 ADMIN_PASSWORD 即可登录并保存数据</code></pre>
           </div>
         </div>
       </div>
@@ -303,7 +296,6 @@ const testConnection = async () => {
 // 检查环境变量配置
 const checkEnvConfig = () => {
   envConfig.value = {
-    adminPassword: import.meta.env.VITE_ADMIN_PASSWORD ? '***' : '',
     saveEnabled: adminPasswordConfigured.value
   }
 }
@@ -320,13 +312,13 @@ const getSystemInfo = () => {
 const loadWebsiteSettings = async () => {
   try {
     const data = await loadSiteData()
-    currentTitle.value = (data && data.title) || 'jingruan 导航'
+    currentTitle.value = (data && data.title) || '精软导航'
     websiteTitle.value = currentTitle.value
     currentSearchEngine.value = (data && data.search) || 'bing'
     searchEngine.value = currentSearchEngine.value
   } catch (error) {
-    currentTitle.value = 'jingruan 导航'
-    websiteTitle.value = 'jingruan 导航'
+    currentTitle.value = '精软导航'
+    websiteTitle.value = '精软导航'
     currentSearchEngine.value = 'bing'
     searchEngine.value = 'bing'
   }
