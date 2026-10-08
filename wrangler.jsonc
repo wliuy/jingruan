@@ -1,0 +1,13 @@
+{
+  "name": "jingruan",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-06-10",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application",
+    "binding": "ASSETS"
+  },
+  "kv_namespaces": [
+    { "binding": "SITE_DATA", "id": "0c806e6c4de64ca087764b3011f10b0f" }
+  ]
+}

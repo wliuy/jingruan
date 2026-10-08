@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- 首页 -->
+  <url>
+    <loc>https://jingruan.example.com/</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- 提示：如果你的导航分类有独立 URL（目前是锚点），只需提交首页即可。 -->
+  <!-- 搜索引擎会通过首页的动态内容自动抓取你所有的站点链接。 -->
+</urlset>
